@@ -8,24 +8,31 @@ function TaskAdd() {
   const [description, setDescription] = useState('Description of the task');
   const [color, setColor] = useState('#ee9b00');
 
-  const renderTask =(
-    `<button
-      type="button"
-      class="task-card"
-    >
-      <h1>${title}</h1>
-      <p class="description">${description}</p>
-    </button>`)
-  const onClick = ({ target }) => {
-    console.log("ddd");
-    console.log(target);
-  }
   const {
     setVisible,
     visible,
     outerHtml,
-    setOuterHtml,
+    setOuterHtml
   } = useContext(TaskContext);
+
+  const addEventos = () => {
+    const lista = document.querySelectorAll('.task-card');
+    for (let i = 0; i < lista.length; i += 1) {
+      lista[i].onclick = function() {
+        setVisible('');
+        setOuterHtml(lista[i].id);
+      };
+    }
+  }
+
+  const renderTask =(
+    `<button
+      class="task-card"
+      id="${outerHtml}"
+    >
+      <h1 class="${outerHtml}">${title}</h1>
+      <p class="description ${outerHtml}">${description}</p>
+    </button>`)
   const Tempos = ['00:30', '01:00', '01:30', '02:00', '02:30', '03:00', '03:30', '04:00'];
 
   return (
@@ -67,9 +74,7 @@ function TaskAdd() {
         <button
           type="button"
         onClick={() => {
-          console.log(outerHtml);
           let object = document.getElementById(`${outerHtml}`);
-          console.log(object);
           object.parentElement.style.height = `${ 15 * duration }vh`;
           object.parentElement.style.backgroundColor = color;
           const pai = object.parentElement.parentElement;
@@ -77,7 +82,7 @@ function TaskAdd() {
             pai.parentElement.removeChild(pai.nextElementSibling);
           }
           object.outerHTML = renderTask;
-          object.addEventListener('click', onClick);
+          addEventos();
           setVisible('invisible');
           const mainSection = document.querySelector('main');
           localStorage.setItem('list', mainSection.outerHTML);

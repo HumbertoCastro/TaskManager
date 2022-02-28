@@ -19,8 +19,15 @@ function Week() {
           setOuterHtml(target.id);
         })
       }
+      const lista = document.querySelectorAll('.task-card');
+      for (let i = 0; i < lista.length; i += 1) {
+        lista[i].onclick = function() {
+          setVisible('');
+          setOuterHtml(lista[i].id);
+        };
+      }
     }
-  })
+  }, [])
   return (
     <main className="flex-column">
       <section className="flex-row">
