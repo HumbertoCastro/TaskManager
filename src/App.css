@@ -1,38 +1,134 @@
 .App {
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  font-family: bebas Neue;
+}
+
+.day-column {
+  justify-content: space-between;
+  border-radius: 20px;
+  width: 100%;
+  background-color: white;
+  text-align: end;
+}
+
+.add-button {
+  background-color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 20px;
+  border: 1px solid #ee9b00;
+}
+
+.board:hover {
+  transition: 280ms ;
+  transform:scale(120%);
+}
+
+.add-button:hover {
+  background-color: #ee9b00;
+  cursor: pointer;
+}
+
+header {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.add-task {
+  position: absolute;
+  margin-top: 10vh;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  width: 50vw;
+  height: 70vh;
+  background-color: white;
+  border-radius: 20px;
+  border: 5px solid #ee9b00;
+}
+
+textarea {
+  height: 30vh;
+  width: 30vw;
+  outline: none;
+  resize: none;
+  font-size: 1.1rem;
+}
+
+.flex-column {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.invisible {
+  display: none;
+}
+
+.board {
+  margin: 2px 0;
+  width: 15vw;
+  height: 15vh;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.task-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.day {
+  width: 100vw;
+  margin: 0 5px;
+}
+
+.center {
+  margin: 0 auto;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.flex-row {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-evenly;
 }
 
-.App-link {
-  color: #61dafb;
+h1, h2, h3, p, .times {
+  margin: 0 4px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+main, section {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.text {
+  color: #a3c4f3;
+}
+
+span {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.grey {
+  color: #ee9b00;
+}
+
+.container-task {
+  width: 100%;
+  justify-content: start;
 }
