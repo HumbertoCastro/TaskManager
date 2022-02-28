@@ -3,12 +3,23 @@ import TaskContext from "../context/TaksContext";
 
 
 function TaskAdd() {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState('title of the task');
   const [duration, setDuration] = useState(1);
-  const [description, setDescription] = useState('');
-  const [color, setColor] = useState('');
+  const [description, setDescription] = useState('Description of the task');
+  const [color, setColor] = useState('#ee9b00');
 
-  const renderTask = `<div class="task-card" ><h1>${title}</h1><p>${description}</p></div>`;
+  const renderTask =(
+    `<button
+      type="button"
+      class="task-card"
+    >
+      <h1>${title}</h1>
+      <p class="description">${description}</p>
+    </button>`)
+  const onClick = ({ target }) => {
+    console.log("ddd");
+    console.log(target);
+  }
   const {
     setVisible,
     visible,
@@ -18,7 +29,7 @@ function TaskAdd() {
   const Tempos = ['00:30', '01:00', '01:30', '02:00', '02:30', '03:00', '03:30', '04:00'];
 
   return (
-      <div className={ `add-task flex-column ${ visible }` }>
+      <div id="id" className={ `add-task flex-column ${ visible }` }>
         <button
           type="button"
           onClick={ ({ target }) => {
@@ -56,7 +67,9 @@ function TaskAdd() {
         <button
           type="button"
         onClick={() => {
-          const object = outerHtml;
+          console.log(outerHtml);
+          let object = document.getElementById(`${outerHtml}`);
+          console.log(object);
           object.parentElement.style.height = `${ 15 * duration }vh`;
           object.parentElement.style.backgroundColor = color;
           const pai = object.parentElement.parentElement;
@@ -64,7 +77,10 @@ function TaskAdd() {
             pai.parentElement.removeChild(pai.nextElementSibling);
           }
           object.outerHTML = renderTask;
+          object.addEventListener('click', onClick);
           setVisible('invisible');
+          const mainSection = document.querySelector('main');
+          localStorage.setItem('list', mainSection.outerHTML);
           }}
         >
           Save Task
