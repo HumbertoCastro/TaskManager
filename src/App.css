@@ -31,6 +31,10 @@
   margin: 10px;
 }
 
+.task-card:hover {
+  cursor: pointer;
+}
+
 .add-button:hover {
   background-color: #ee9b00;
   cursor: pointer;
