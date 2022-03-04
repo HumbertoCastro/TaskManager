@@ -47,7 +47,7 @@ function TaskAdd() {
         <button
           type="button"
           class="text add-button"
-          id="${pos}-${week}"
+          id="${pos+i}-${week}"
         >
           ENTER YOUR TASK
         </button>
@@ -64,6 +64,7 @@ function TaskAdd() {
 
   const resetEventos = () => {
     const buttons =document.querySelectorAll('.add-button');
+    console.log(buttons);
     for (let i = 0; i < buttons.length; i += 1) {
       buttons[i].addEventListener('click', function({ target }) {
         console.log(target.id);
