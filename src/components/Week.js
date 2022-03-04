@@ -15,7 +15,6 @@ function Week() {
       const buttons =document.querySelectorAll('.add-button');
       for (let i = 0; i < buttons.length; i += 1) {
         buttons[i].addEventListener('click', function({ target }) {
-          console.log(target.id);
           setVisible('');
           setOuterHtml(target.id);
         })

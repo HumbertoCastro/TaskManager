@@ -47,7 +47,7 @@ header {
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 .add-task {
-  position: absolute;
+  position: fixed;
   margin-top: 10vh;
   margin-left: auto;
   margin-right: auto;

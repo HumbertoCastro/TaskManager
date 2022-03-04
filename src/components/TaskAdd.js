@@ -13,7 +13,6 @@ function TaskAdd() {
   } = useContext(TaskContext);
 
   useEffect(() => {
-    console.log('pagina iniciada');
     addEventos();
   }, [])
   const [title, setTitle] = useState('title of the task');
@@ -26,7 +25,6 @@ function TaskAdd() {
     const pos = element.split('-')[0];
     const time = value.split(' ')[1];
     const local = ReturnMinutes.indexOf(time);
-
     const tamanh = value.split(' ')[0];
     let cardzinho = (`<div class="flex-row container-task" key="${pos}-${week}" }>
         <p class="tempo">${time}</p>
@@ -41,6 +39,10 @@ function TaskAdd() {
         </div>
       </div>`);
     for (let i = 1; i < tamanh; i += 1) {
+      console.log('entrou aqui denv');
+      console.log(tamanh);
+      console.log(pos+i);
+      console.log(ReturnMinutes[local + i]);
       const newValue = (`<div class="flex-row container-task" key="${pos}-${week}" }>
       <p class="tempo">${ReturnMinutes[local + i]}</p>
       <div class="board">
@@ -64,10 +66,8 @@ function TaskAdd() {
 
   const resetEventos = () => {
     const buttons =document.querySelectorAll('.add-button');
-    console.log(buttons);
     for (let i = 0; i < buttons.length; i += 1) {
       buttons[i].addEventListener('click', function({ target }) {
-        console.log(target.id);
         setVisible('');
         setOuterHtml(target.id);
       })
@@ -85,9 +85,9 @@ function TaskAdd() {
     const lista = document.querySelectorAll('.task-card');
     const deletebtn = document.querySelectorAll('.delete-btn');
     for (let i = 0; i < deletebtn.length; i += 1) {
-      deletebtn[i].addEventListener('click', function() {
+      deletebtn[i].onclick = function() {
         deleteTaskFromList(deletebtn[i].classList[1], deletebtn[i].value);
-      });
+      };
     }
     for (let i = 0; i < lista.length; i += 1) {
       lista[i].onclick = function() {
@@ -97,9 +97,8 @@ function TaskAdd() {
     }
   }
 
-  const renderTask = () => {
+  const renderTask = (time) => {
     let object = document.getElementById(`${outerHtml}`).parentElement.previousSibling;
-    console.log(object.previousSibling);
     if (object.previousSibling !== null) {
       object = object.previousSibling;
     }
@@ -110,7 +109,7 @@ function TaskAdd() {
     >
       <h1 class="${outerHtml}">${title}</h1>
       <p class="description ${outerHtml}">${description}</p>
-      <button type="button" class="delete-btn ${outerHtml}" value="${duration} ${object.innerHTML}" >
+      <button type="button" class="delete-btn ${outerHtml}" value="${time} ${object.innerHTML}" >
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-file-x-fill" viewBox="0 0 16 16">
           <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6.854 6.146 8 7.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 8l1.147 1.146a.5.5 0 0 1-.708.708L8 8.707 6.854 9.854a.5.5 0 0 1-.708-.708L7.293 8 6.146 6.854a.5.5 0 1 1 .708-.708z"/>
         </svg>
@@ -147,7 +146,7 @@ function TaskAdd() {
       <select onChange={({ target: { value } }) => {
         setDuration(value);
         } }>
-          <option>How long will it last</option>
+          <option value="1">How long will it last</option>
           {
             Tempos.map((x, index) => (
               <option value={ index + 1 } key={ `${index}-${x}` }>{ x }</option>
@@ -161,13 +160,21 @@ function TaskAdd() {
           type="button"
         onClick={() => {
           let object = document.getElementById(`${outerHtml}`);
-          object.parentElement.style.height = `${ 15 * duration }vh`;
+          let timeOfTaks = duration;
           object.parentElement.style.backgroundColor = color;
           const pai = object.parentElement.parentElement;
           for (let i = 1; i < duration; i += 1) {
+            if (pai.nextElementSibling.lastChild.firstChild) {
+              if (pai.nextElementSibling.lastChild.firstChild.className === 'task-card') {
+                timeOfTaks = i;
+                global.alert('The duration of the task conflits with the next task');
+                break;
+              }
+            }
+            object.parentElement.style.height = `${ 15 * (i + 1) }vh`;
             pai.parentElement.removeChild(pai.nextElementSibling);
           }
-          object.outerHTML = renderTask();
+          object.outerHTML = renderTask(timeOfTaks);
           object = document.getElementById(`${outerHtml}`);
           if (object.nextElementSibling.nextElementSibling !== null) {
             object.parentElement.removeChild(object.nextElementSibling.nextElementSibling);
