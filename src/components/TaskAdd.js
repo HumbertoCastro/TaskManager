@@ -10,6 +10,8 @@ function TaskAdd() {
     visible,
     outerHtml,
     setOuterHtml,
+    changeTime,
+    setChangeTime,
   } = useContext(TaskContext);
 
   useEffect(() => {
@@ -68,6 +70,7 @@ function TaskAdd() {
     const buttons =document.querySelectorAll('.add-button');
     for (let i = 0; i < buttons.length; i += 1) {
       buttons[i].addEventListener('click', function({ target }) {
+        setChangeTime(true);
         setVisible('');
         setOuterHtml(target.id);
       })
@@ -75,6 +78,7 @@ function TaskAdd() {
     const lista = document.querySelectorAll('.task-card');
     for (let i = 0; i < lista.length; i += 1) {
       lista[i].onclick = function() {
+        setChangeTime(false);
         setVisible('');
         setOuterHtml(lista[i].id);
       };
@@ -91,6 +95,7 @@ function TaskAdd() {
     }
     for (let i = 0; i < lista.length; i += 1) {
       lista[i].onclick = function() {
+        setChangeTime(false);
         setVisible('');
         setOuterHtml(lista[i].id);
       };
@@ -128,8 +133,7 @@ function TaskAdd() {
           } }
         >
           x
-        </button>  
-        <img href="../../file-x-fill.svg" alt="delete" />
+        </button>
         <div className="flex-row">
           <span className="grey">{'<h1>'}</span><h1 className="text">Define your Task</h1><span className="grey">{'<h1>'}</span>
         </div>
@@ -143,16 +147,18 @@ function TaskAdd() {
         }} />
           <span className="grey"> Define the task color</span>
         </div>
-      <select onChange={({ target: { value } }) => {
-        setDuration(value);
-        } }>
-          <option value="1">How long will it last</option>
-          {
-            Tempos.map((x, index) => (
-              <option value={ index + 1 } key={ `${index}-${x}` }>{ x }</option>
-            ))
-          }
-        </select>
+        {
+          changeTime ? <select onChange={({ target: { value } }) => {
+            setDuration(value);
+            } }>
+              <option value="1">How long will it last</option>
+              {
+                Tempos.map((x, index) => (
+                  <option value={ index + 1 } key={ `${index}-${x}` }>{ x }</option>
+                ))
+              }
+            </select> : null
+        }
       <textarea placeholder="Task description" maxLength="700" onChange={ ({ target: { value } }) => { 
         setDescription(value);
          } } ></textarea>

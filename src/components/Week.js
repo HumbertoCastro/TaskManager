@@ -8,6 +8,7 @@ function Week() {
   const {
     setVisible,
     setOuterHtml,
+    setChangeTime,
   } = useContext(TaskContext);
   useEffect(() => {
     if (localStorage.getItem('list')) {
@@ -15,6 +16,7 @@ function Week() {
       const buttons =document.querySelectorAll('.add-button');
       for (let i = 0; i < buttons.length; i += 1) {
         buttons[i].addEventListener('click', function({ target }) {
+          setChangeTime(true);
           setVisible('');
           setOuterHtml(target.id);
         })
@@ -24,6 +26,7 @@ function Week() {
         lista[i].onclick = function() {
           setVisible('');
           setOuterHtml(lista[i].id);
+          setChangeTime(false);
         };
       }
     }

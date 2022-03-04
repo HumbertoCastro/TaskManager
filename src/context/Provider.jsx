@@ -6,8 +6,11 @@ function Provider({ children }) {
   const [visible, setVisible] = useState('invisible');
   const [time, setTime] = useState('');
   const [outerHtml, setOuterHtml] = useState('');
+  const [changeTime, setChangeTime] = useState(true);
 
   const contextValue = {
+    changeTime,
+    setChangeTime,
     time,
     setTime,
     setVisible,
