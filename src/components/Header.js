@@ -16,7 +16,7 @@ function Header () {
   return (
     <header className="center flex-column">
       <div className="flex-row">
-        <span className="grey">{'<h1>'}</span><h1 className="text">NOME DO APP</h1><span className="grey">{'<h1>'}</span>
+        <span className="grey">{'<h1>'}</span><h1 className="text">Task Maneger</h1><span className="grey">{'<h1>'}</span>
       </div>
       <div className="flex-row">
         <span className="grey">{'<h1>'}</span><h1 className="text">{ dayName }</h1><span className="grey">{'<h1>'}</span>

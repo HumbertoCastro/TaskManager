@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import TaskContext from "../context/TaksContext";
-import ReturnMinutes from "../helpers/Minutes";
 
-function DayColumn( { week }) {
+function DayColumn( { week, ReturnMinutes }) {
   const {
     setTime,
     setOuterHtml,
@@ -10,10 +9,10 @@ function DayColumn( { week }) {
   } = useContext(TaskContext);
   const Tempos = ['00:30', '01:00', '01:30', '02:00', '02:30', '03:00', '03:30', '04:00'];
   return (
-    <div className="day-column flex-column">
+    <div className="day-column flex-column" id={`${week}`} >
       {
         ReturnMinutes.map((x, index) => (
-          <div className="flex-row container-task">
+          <div className="flex-row container-task" key={ `${index}-${x}` }>
             <p className="tempo">{x}</p>
             <div className="board">
               <button
