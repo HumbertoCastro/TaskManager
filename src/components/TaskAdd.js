@@ -124,17 +124,20 @@ function TaskAdd() {
       <div id="id" className={ `add-task flex-column ${ visible }` }>
         <button
           type="button"
+          className="delete-btn"
           onClick={ ({ target }) => {
             setVisible('invisible');
           } }
-        >
-          x
+        > 
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-file-x-fill" viewBox="0 0 16 16">
+            <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6.854 6.146 8 7.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 8l1.147 1.146a.5.5 0 0 1-.708.708L8 8.707 6.854 9.854a.5.5 0 0 1-.708-.708L7.293 8 6.146 6.854a.5.5 0 1 1 .708-.708z"/>
+          </svg>
         </button>
         <div className="flex-row">
           <span className="grey">{'<h1>'}</span><h1 className="text">Define your Task</h1><span className="grey">{'<h1>'}</span>
         </div>
         <h1>Task name</h1>
-      <input type="text" onChange={({ target: { value } }) => {
+      <input type="text" placeholder="name" onChange={({ target: { value } }) => {
         setTitle(value);
         }} />
         <div>

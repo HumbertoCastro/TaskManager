@@ -46,8 +46,10 @@
 header {
   width: 100%;
   border-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border: 2px solid #ee9b00;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.95px 2.95px 2.6px;
 }
+
 .add-task {
   position: fixed;
   margin-top: 10vh;
