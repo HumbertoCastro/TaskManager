@@ -41,10 +41,6 @@ function TaskAdd() {
         </div>
       </div>`);
     for (let i = 1; i < tamanh; i += 1) {
-      console.log('entrou aqui denv');
-      console.log(tamanh);
-      console.log(pos+i);
-      console.log(ReturnMinutes[local + i]);
       const newValue = (`<div class="flex-row container-task" key="${pos}-${week}" }>
       <p class="tempo">${ReturnMinutes[local + i]}</p>
       <div class="board">
@@ -159,7 +155,7 @@ function TaskAdd() {
               }
             </select> : null
         }
-      <textarea placeholder="Task description" maxLength="700" onChange={ ({ target: { value } }) => { 
+      <textarea placeholder="Task description" maxLength="80" onChange={ ({ target: { value } }) => { 
         setDescription(value);
          } } ></textarea>
         <button

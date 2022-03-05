@@ -27,7 +27,9 @@
 }
 
 .description {
-  font-size: 0.8em;
+  font-size: 1rem;
+  inline-size: 200px;
+  overflow-wrap: break-word;
   border-radius: 10px;
   margin: 10px;
 }
@@ -63,8 +65,9 @@ header {
 }
 
 textarea {
-  height: 30vh;
-  width: 30vw;
+  text-align: center;
+  height: 6vh;
+  width: 26vw;
   outline: none;
   resize: none;
   font-size: 1.1rem;
@@ -154,6 +157,6 @@ span {
   background: none;
 }
 
-.delete-btn svg {
-  float: right;
+h1 {
+  font-size: 2rem;
 }

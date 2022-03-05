@@ -1,5 +1,5 @@
 const ReturnMinutes = [];
-let inter = 0
+
 for (let i = 8; i < 24; i += 1) {
   const hour = i;
   if (i < 10) {
